@@ -16,10 +16,10 @@ const deploy = async () => {
     const accounts = await web3.eth.getAccounts();
   
     console.log('Attempting to deploy from account', accounts[2]);
-  
+    console.log("account",accounts[2]);
     const result = await new web3.eth.Contract(interface)
-      .deploy({ data: bytecode })
-      .send({ gas: '1000000', from: accounts[2] });
+      .deploy({ data: bytecode , arguments:["1000000000000000000",accounts[2]]})
+      .send({ gas: '10000000', from: accounts[2] });
   
     console.log('Contract deployed to', result.options.address);
     provider.engine.stop();
@@ -31,3 +31,5 @@ const deploy = async () => {
   // Second deployed @bsctestnet @address 0x7BE7F21791596869176A61bCEd2Bc47577f41424  Inbox.sol
 
   // Lottery.sol contract deployed @bsctestnet @address 0x0478783153f0bA24c1daE810f0a432562dc80113   Lottery.sol
+
+  // CroudFunding Contract deployed @bsctestnet @address 0x71bFd880a27c91F836BC4eeDEC0fdAe0E2a04952
